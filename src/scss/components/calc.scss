@@ -1,0 +1,140 @@
+.calc {
+    @include adaptiveClamp(padding-top, 60, 24);    
+    &__container {
+    }
+
+    &__title {
+        @include adaptiveClamp(margin-bottom, 32, 20);
+        @media(max-width:744px){
+            max-width: rem(500);
+        }
+        @media(max-width:720px){
+            margin: 0 auto;
+            @include adaptiveClamp(margin-bottom, 32, 20);
+        }
+    }
+
+    &__body {
+    }
+
+    &__input-range {
+    }
+}
+.calc-body {
+    display: flex;
+    @include adaptiveClamp(padding-top, 50, 20);
+    @include adaptiveClamp(padding-bottom, 50, 20);
+    @include adaptiveClamp(padding-left, 80, 20);
+    @include adaptiveClamp(padding-right, 80, 20);
+    background-color: $bacGrennColor;
+    @media(max-width:1032px){
+        flex-direction: column;
+        row-gap: rem(32);
+    }
+    @media(max-width:720px){
+        margin: 0 rem(-20);
+        @include adaptiveClamp(padding-left, 20, 20);
+        @include adaptiveClamp(padding-right, 20, 20);
+    }
+    &__row {
+        display: flex;
+        width: 100%;
+        @include adaptiveClamp(gap, 40, 16);
+        @media(max-width:720px){
+            flex-direction: column;
+            max-width: rem(500);
+            margin: 0 auto;
+        }
+    }
+    &__item {
+    }
+
+    &__comp {
+        min-width: rem(294);
+        margin-left: rem(32);
+        @media(max-width:1032px){
+            max-width: rem(500);
+            width: 100%;
+            margin: 0 auto;
+        }
+    }
+
+    &__title {
+        @media(max-width:1032px){
+            text-align: center;
+        }
+       
+    }
+
+    &__conclusion {
+        margin-top: rem(12);
+        display: flex;
+        justify-content: center;
+        padding: rem(12);
+        border-radius: 12px;
+        text-align: center;
+        background-color: $whiteColor;
+        
+        @include adaptiveClamp(font-size, 24, 20);
+        @include adaptiveClamp(line-height, 30, 25);
+        p {
+            margin-left: rem(5);
+            @include adaptiveClamp(font-size, 24, 20);
+            @include adaptiveClamp(line-height, 30, 25);
+        }
+    }
+    &__number-conclusion {
+    }
+    &__button {
+        margin-top: rem(20);
+    }
+}
+
+
+.item-calc {
+    width: 100%;
+
+    &__title {
+        @include adaptiveClamp(font-size, 28, 16);
+        @include adaptiveClamp(line-height, 34, 20);
+
+        margin-bottom: rem(20);
+        @media(max-width:720px){
+            text-align: center;
+        }
+    }
+
+    &__row-input {
+        
+        input {
+            height: rem(48);
+            @media(max-width:1032px){
+                height: rem(32);
+            }
+        }
+    }
+
+    &__text {
+        margin-top: rem(20);
+        display: flex;
+        @include adaptiveClamp(font-size, 24, 20);
+        @include adaptiveClamp(line-height, 30, 25);
+        p {
+            margin-left: rem(5);
+            @include adaptiveClamp(font-size, 24, 20);
+            @include adaptiveClamp(line-height, 30, 25);
+        }
+        @media(max-width:720px){
+            justify-content: center;
+        }
+    }
+
+    &__number {
+    }
+
+    &__number-sum {
+    }
+
+    &__number-month {
+    }
+}

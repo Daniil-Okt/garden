@@ -1,0 +1,137 @@
+// =====================================================================================================================
+.header {
+  position: sticky;
+  top: 0;
+  background-color: $whiteColor;
+  width: 100%;
+
+  &.sticky {
+    // ..стили для липкого хедера
+  }
+
+  // .header__container
+  &__container {
+    // height: rem($headerHeight);
+    @include adaptiveClamp(height, 98, 51);
+    display: flex;
+    align-items: center;
+  }
+  
+
+  &__logo {
+    @include adaptiveClamp(max-width, 180, 108);
+    margin-right: auto;
+    img {
+      width: 100%;
+    }
+  }
+
+  &__tel-row {
+    @include adaptiveClamp(margin-right, 31, 20);
+  }
+
+  &__tel {
+    margin-bottom: rem(3);
+    display: flex;
+    align-items: center;
+    img {
+      @include adaptiveClamp(width, 20, 14);
+      @include adaptiveClamp(margin-right, 12, 8);
+    }
+    p {
+      @include adaptiveClamp(font-size, 18, 12);
+      transition: color 0.3s ease  0s;
+    }
+    cursor: pointer;
+    &:hover {
+      p {
+        color: #3970e8;
+      }
+    }
+  }
+
+  &__button {
+    cursor: pointer;
+    color: #5684EB;
+    text-align: right;
+    @include adaptiveClamp(font-size, 12, 10);
+    &:hover {
+      color: #3970e8;
+    }
+  }
+
+  &__icon-row {
+    display: flex;
+    @include adaptiveClamp(gap, 16, 12);
+  }
+
+  &__icon {
+    @include adaptiveClamp(max-width, 32, 20);
+    img {
+      width: 100%;
+    }
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+.logo {
+}
+
+// =====================================================================================================================
+
+// Burger
+/*
+.icon-menu {
+  display: none;
+
+  @include media(767) {
+    display: block;
+    position: relative;
+    width: rem(30);
+    height: rem(18);
+    cursor: pointer;
+    z-index: 5;
+
+    span,
+    &::before,
+    &::after {
+      content: "";
+      transition: all 300ms ease 0ms;
+      right: 0;
+      position: absolute;
+      width: 100%;
+      height: rem(2);
+      background-color: #000;
+    }
+
+    &::before {
+      top: 0;
+    }
+
+    &::after {
+      bottom: 0;
+    }
+
+    span {
+      top: calc(50% - rem(1));
+    }
+
+    .menu-open & {
+      span {
+        width: 0;
+      }
+
+      &::before {
+        top: calc(50% - rem(1));
+        transform: rotate(-45deg);
+      }
+
+      &::after {
+        bottom: calc(50% - rem(1));
+        transform: rotate(45deg);
+      }
+    }
+  }
+}
+*/
