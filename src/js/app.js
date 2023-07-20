@@ -59,7 +59,7 @@ isWebp();
  * На обертку(враппер) окна добавь класс _overlay-bg
  * На кнопку для закрытия окна добавь класс button-close
  */
-// togglePopupWindows();
+togglePopupWindows();
 
 // =======================================================================================================
 // const tabs = new Tabs('default-tabs', {});
@@ -82,10 +82,19 @@ isWebp();
 * Добавить класс .popup-thanks для модального окна спасибо
   Раскоментировать для использования
 */ 
-// import { validForm } from './modules/validFrom.js'
-// const popupTranks = document.querySelector('.popup-thanks')
-// const formNAME = document.getElementById('form-NAME')
-// validForm(fromName, popupTranks)
+import { validForm } from './modules/validFrom.js'
+const popupTranks = document.querySelector('.popup-tranks')
+const formApplication = document.getElementById('form-application')
+const formAbout = document.getElementById('form-about')
+const formApplicationTwo = document.getElementById('form-application-two')
+const formPopup = document.getElementById('form-popup')
+
+
+validForm(formApplication, popupTranks)
+validForm(formAbout, popupTranks)
+validForm(formApplicationTwo, popupTranks)
+validForm(formPopup, popupTranks)
+
 // =======================================================================================================
 
 

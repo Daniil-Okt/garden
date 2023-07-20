@@ -4,6 +4,7 @@
   top: 0;
   background-color: $whiteColor;
   width: 100%;
+  z-index: 15;
 
   &.sticky {
     // ..стили для липкого хедера
@@ -76,6 +77,19 @@
   }
 }
 .logo {
+}
+
+.popup-form {
+  background-color: #333333c1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__container {
+        position: relative;
+        background: $whiteColor;
+        border-radius: 15px;
+        padding: rem(30) rem(10);
+    }
 }
 
 // =====================================================================================================================

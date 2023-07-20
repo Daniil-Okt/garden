@@ -1,0 +1,91 @@
+.product {
+    @include adaptiveClamp(padding-top, 40, 24);
+    @include adaptiveClamp(padding-bottom, 40, 24);
+    background-color: $bacGrennColor;
+    &__container {
+       
+    }
+
+    &__title {
+        max-width: rem(777);
+        @include adaptiveClamp(margin-bottom, 32, 20);
+        @media(max-width:720px){
+            margin: 0 auto;
+            @include adaptiveClamp(margin-bottom, 32, 20);
+        }
+    }
+
+    &__row {
+        display: flex;
+        justify-content: space-between;
+        @media(max-width:950px){
+            flex-wrap: wrap;
+            max-width: rem(600);
+            margin: 0 auto;
+        }
+        
+    }
+
+    &__item {
+    }
+}
+.item-product {
+    @media(max-width:480px){
+        margin: 0 auto;
+    }
+    &__body {
+        width: rem(180);
+        height: rem(180);
+        background-color: $whiteColor;
+        padding: rem(24);
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        // justify-content: center;
+        align-items: center;
+        
+    }
+
+    &__img {
+        width: rem(64);
+        margin-bottom: rem(16);
+    }
+
+    &__text {
+        text-align: center;
+        color:#61AA45;
+        font-size: rem(14);
+        line-height: rem(18);
+    }
+
+    &__str {
+        display: flex;
+        align-items: center;
+        img {
+            @include adaptiveClamp(max-width, 48, 36);
+            width: 100%;
+        }
+        &.two {
+            @media(max-width:950px){
+                flex: 0 1 100%;
+                margin: rem(16);
+                justify-content: center;
+                img {
+                    transform: rotate(90deg);
+                }
+                opacity: 0;
+            }
+            @media(max-width:480px){
+                opacity: 1;
+            }
+        }
+        @media(max-width:480px){
+            flex: 0 1 100%;
+            margin: rem(16);
+            justify-content: center;
+            img {
+                transform: rotate(90deg);
+            }
+        }
+    }
+}
