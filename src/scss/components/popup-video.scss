@@ -1,0 +1,28 @@
+.popup-video {
+    position: fixed;
+    background-color: #333333c1;
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+    &__container {
+        position: relative;
+        max-width: rem(1200);
+        padding: 0;
+        // max-height: rem(600);
+        flex: 0 1 100%;
+    }
+
+    &__vid {
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            @include adaptiveClamp(height, 675, 190);
+        }
+    }
+    .popup-tranks__button {
+        background-color: $whiteColor;
+        border-radius: 50%;
+        padding: rem(2);
+    }
+}

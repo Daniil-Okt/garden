@@ -2,6 +2,9 @@
 // body {
 //     background-color: #F0F0F0;
 // }
+* {
+    -webkit-tap-highlight-color: transparent;
+  }
 a {
     cursor: pointer;
     transition: all 0.3s ease  0s;
@@ -86,4 +89,7 @@ b {
     100% {
         transform: translateY(0px);
     }
+}
+.button-close {
+    cursor: pointer;
 }

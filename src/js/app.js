@@ -22,7 +22,7 @@ import {
 
 // import AOS from 'aos'
 
-// import Swiper, { Navigation, Pagination } from 'swiper';
+import Swiper, { Navigation, Pagination, Autoplay } from 'swiper';
 
 /* Проверка поддержки webp, добавление класса webp или no-webp для HTML
  ! (i) необходимо для корректного отображения webp из css
@@ -69,8 +69,8 @@ togglePopupWindows();
 * data-da="class блока куда нужно перебросить, брекпоинт(ширина экрана), позиция в блоке(цифра либо first,last)"
 */
 /*Расскоментировать для использования*/
-// import { useDynamicAdapt } from './modules/dynamicAdapt.js'
-// useDynamicAdapt()
+import { useDynamicAdapt } from './modules/dynamicAdapt.js'
+useDynamicAdapt()
 // =======================================================================================================
 
 /* Валидация формы =======================================================================================
@@ -160,3 +160,113 @@ calcRangeMonth.addEventListener('input', () => {
 function numberWithSpaces(number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
+
+
+
+const swiperCertificat = new Swiper('.swiper-certificat', {
+  speed: 400,
+  spaceBetween: 16,
+  slidesPerView: 1,
+  modules: [Autoplay, Pagination, Navigation],
+  grabCursor: true,
+  slideToClickedSlide: true,
+  pagination: {
+    el: ".certificat__pagination",
+    dynamicBullets: true,
+    clickable: true,
+  },
+  autoplay: {
+    delay: 3000,
+    stopOnLastSlide: false,
+    disableOnIteration: false,
+  },
+  navigation: {
+    prevEl: '.certificat__button-back',
+    nextEl: '.certificat__button-next',
+  },
+  loop: true,
+  breakpoints: {
+    600: {
+      slidesPerView: 2,
+      spaceBetween: 25,
+      slideToClickedSlide: true,
+  },
+    901: {
+      slidesPerView: 3,
+      spaceBetween: 32,
+      slideToClickedSlide: true,
+  },
+  },
+});
+const swiperVidreviews = new Swiper('.swiper-vidreviews', {
+  speed: 400,
+  spaceBetween: 16,
+  slidesPerView: 1,
+  modules: [Autoplay, Pagination, Navigation],
+  grabCursor: true,
+  slideToClickedSlide: true,
+  navigation: {
+    prevEl: '.certificat__button-back',
+    nextEl: '.certificat__button-next',
+  },
+  breakpoints: {
+    721: {
+      slidesPerView: 2,
+      spaceBetween: 25,
+      slideToClickedSlide: true,
+  },
+    901: {
+      slidesPerView: 3,
+      spaceBetween: 32,
+      slideToClickedSlide: true,
+  },
+  },
+});
+
+// const aboutButton = document.querySelector('.about__button')
+// const calc = document.querySelector('.calc')
+// aboutButton.addEventListener('click', () => {
+//   calc.scrollIntoView('alingToTop')
+// })
+
+//открытие видео
+const popupVideo = document.querySelectorAll('.popup-video')
+const buttonOpenVideo = document.querySelectorAll('.slide-vidreviews__button')
+const videoFrameAll = document.querySelectorAll('.popup-video__vid iframe');
+
+if (popupVideo.length > 0) {
+  for (let index = 0; index < popupVideo.length; index++) {
+    buttonOpenVideo[index].addEventListener('click', () => {
+      popupVideo[index].classList.add('_is-open')
+      videoFrameAll[index].contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+
+    })
+  }
+}
+
+const buttonCloseVideo = document.querySelectorAll('.popup-video-close-button')
+if (videoFrameAll.length > 0) {
+  for (let index = 0; index < videoFrameAll.length; index++) {
+    buttonCloseVideo[index].addEventListener('click', () => {
+      videoFrameAll[index].contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    })
+    
+  }
+}
+//   // Находим все элементы с классом "popup-video-close-button"
+// const closeButtonElements = document.querySelectorAll('.popup-video-close-button');
+
+// // Добавляем обработчик события 'click' на каждую кнопку закрытия
+// closeButtonElements.forEach((closeButton) => {
+//   closeButton.addEventListener('click', () => {
+//     // Находим ближайший родительский контейнер .popup-video
+//     const videoContainer = closeButton.closest('.popup-video');
+
+//     // Находим iframe с видео в контейнере
+//     const videoFrame = videoContainer.querySelector('iframe');
+
+//     // Останавливаем воспроизведение видео
+//     videoFrame.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+//   });
+// });
+

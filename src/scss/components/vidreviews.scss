@@ -1,0 +1,95 @@
+.vidreviews {
+    @include adaptiveClamp(padding-top, 40, 24);
+    @include adaptiveClamp(padding-bottom, 40, 24);
+    background-color: $bacGrennColor;
+    &__slide {
+    }
+    &__title {
+        @include adaptiveClamp(margin-bottom, 32, 20);
+        @media(max-width:900px){
+            text-align: center;
+        }
+        @media(max-width:570px){
+            @include adaptiveClamp(max-width, 550, 300);
+            margin: 0 auto;
+            @include adaptiveClamp(margin-bottom, 32, 20);
+
+        }
+    }
+    .certificat__swiper {
+        max-width: 100%;
+        @media(max-width:1200px){
+            margin: 0 auto;
+        }
+        @media(max-width:900px){
+            margin: 0 rem(58);
+        }
+        @media(max-width:520px){
+            margin: 0 rem(48);
+        }
+    }
+    .certificat__button-back, .certificat__button-next {
+        top: 30%;
+    }
+}
+.slide-vidreviews {
+
+    &__body {
+        position: relative;
+    }
+    &__img-row {
+        position: relative;
+
+    }
+    &__img {
+        width: 100%;
+        border-radius: 12px;
+    }
+    &__button-row {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+    }
+    &__button {
+        @include adaptiveClamp(width, 70, 48);
+        transition: opacity 0.3s ease  0s, transform 0.3s ease  0s;
+        cursor: pointer;
+        &:hover {
+            opacity: 0.8;
+        }
+        &:active {
+            transform: rotate(360deg);
+            opacity: 1;
+        }
+    }    
+
+    &__button-img {
+        width: 100%;
+    }
+    
+    &__name {
+        @include adaptiveClamp(margin-top, 20, 16);
+        @include adaptiveClamp(font-size, 24, 16);
+        line-height: 125%;
+        @media(max-width:720px){
+            text-align: center;
+        }
+    }
+    &__post {
+        @include adaptiveClamp(margin-top, 8, 4);
+        @include adaptiveClamp(font-size, 18, 12);
+        line-height: 133.333%;
+        @media(max-width:720px){
+            text-align: center;
+        }
+    }
+}
+
+.swiper-slide {
+}

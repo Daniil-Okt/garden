@@ -2,3 +2,22 @@ p.error {
     margin-top: rem(170);
     @include adaptiveClamp(margin-bottom, 360, 312);
 }
+
+
+.politic {
+    padding-top: rem(48);
+    @include adaptiveClamp(padding-bottom, 296, 65);
+    &__container {
+
+    }
+
+    &__title {
+        margin-bottom: rem(24);
+    }
+
+    &__text {
+        @include adaptiveClamp(font-size, 14, 12);
+        lighting-color: 130%;
+        margin-bottom: rem(8);
+    }
+}
