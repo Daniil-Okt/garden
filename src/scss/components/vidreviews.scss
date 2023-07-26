@@ -1,4 +1,5 @@
 .vidreviews {
+    display: none;
     @include adaptiveClamp(padding-top, 40, 24);
     @include adaptiveClamp(padding-bottom, 40, 24);
     background-color: $bacGrennColor;

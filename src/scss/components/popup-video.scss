@@ -15,8 +15,8 @@
     &__vid {
         
         iframe {
+            display: block;
             width: 100%;
-            height: 100%;
             @include adaptiveClamp(height, 675, 190);
         }
     }

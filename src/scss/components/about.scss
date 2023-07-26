@@ -182,7 +182,7 @@
 
     &__text {
         text-align: center;
-        @include adaptiveClamp(font-size, 46, 24);
+        @include adaptiveClamp(font-size, 40, 20);
         line-height: 125%;
     }
 }

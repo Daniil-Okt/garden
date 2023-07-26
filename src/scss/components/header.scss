@@ -55,7 +55,7 @@
     cursor: pointer;
     color: #5684EB;
     text-align: right;
-    @include adaptiveClamp(font-size, 12, 10);
+    @include adaptiveClamp(font-size, 12, 13);
     &:hover {
       color: #3970e8;
     }

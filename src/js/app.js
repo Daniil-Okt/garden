@@ -147,7 +147,6 @@ const calcRangeSumm = document.getElementById('calcRangeSumm')
 const numberSumm = document.querySelector('.item-calc__number-summ')
 const calcRangeMonth = document.getElementById('calcRangeMonth')
 const numbeMonth = document.querySelector('.item-calc__number-month')
-
 calcRangeSumm.addEventListener('input', () => {
   // Обновляем содержимое элемента с классом item-calc__number-summ с текущим значением ползунка
   numberSumm.textContent = numberWithSpaces(calcRangeSumm.value);
@@ -160,7 +159,13 @@ calcRangeMonth.addEventListener('input', () => {
 function numberWithSpaces(number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
-
+//калькулятор
+const numbeConclusion = document.querySelector('.calc-body__number-conclusion')
+const buttonCalc = document.querySelector('.calc-body__button')
+buttonCalc.addEventListener('click', () => {
+  const result = parseInt(calcRangeSumm.value) * parseInt(calcRangeMonth.value) * 2.13
+  numbeConclusion.textContent = numberWithSpaces(result)
+})
 
 
 const swiperCertificat = new Swiper('.swiper-certificat', {
@@ -223,12 +228,6 @@ const swiperVidreviews = new Swiper('.swiper-vidreviews', {
   },
 });
 
-// const aboutButton = document.querySelector('.about__button')
-// const calc = document.querySelector('.calc')
-// aboutButton.addEventListener('click', () => {
-//   calc.scrollIntoView('alingToTop')
-// })
-
 //открытие видео
 const popupVideo = document.querySelectorAll('.popup-video')
 const buttonOpenVideo = document.querySelectorAll('.slide-vidreviews__button')
@@ -238,35 +237,9 @@ if (popupVideo.length > 0) {
   for (let index = 0; index < popupVideo.length; index++) {
     buttonOpenVideo[index].addEventListener('click', () => {
       popupVideo[index].classList.add('_is-open')
-      videoFrameAll[index].contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+      // videoFrameAll[index].contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
 
     })
   }
 }
-
-const buttonCloseVideo = document.querySelectorAll('.popup-video-close-button')
-if (videoFrameAll.length > 0) {
-  for (let index = 0; index < videoFrameAll.length; index++) {
-    buttonCloseVideo[index].addEventListener('click', () => {
-      videoFrameAll[index].contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-    })
-    
-  }
-}
-//   // Находим все элементы с классом "popup-video-close-button"
-// const closeButtonElements = document.querySelectorAll('.popup-video-close-button');
-
-// // Добавляем обработчик события 'click' на каждую кнопку закрытия
-// closeButtonElements.forEach((closeButton) => {
-//   closeButton.addEventListener('click', () => {
-//     // Находим ближайший родительский контейнер .popup-video
-//     const videoContainer = closeButton.closest('.popup-video');
-
-//     // Находим iframe с видео в контейнере
-//     const videoFrame = videoContainer.querySelector('iframe');
-
-//     // Останавливаем воспроизведение видео
-//     videoFrame.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-//   });
-// });
 

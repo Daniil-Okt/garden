@@ -30,7 +30,8 @@
         }
         @media(max-width:620px){
             @include adaptiveClamp(max-width, 430, 240);
-            margin: 0 auto rem(16);
+            margin: 0 auto;
+            @include adaptiveClamp(margin-bottom, 32, 16);
         }
     }
 
