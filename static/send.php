@@ -1,12 +1,12 @@
 <?php 
-   $site = 'GARDEN';
+   $site = 'GARDEN-MARKET';
    $name = $_POST['name'];
    $phone = $_POST['tel'];
    //Отправка в Telegram
   
    $token = "6306547207:AAFriATSiu6f5Uea2M1vnh0j-AHZDREcGWE";
    
-   $chat_id = "-968834332";
+   $chat_id = "-1001931724708";
    
   
    // Формирование текста сообщения
@@ -33,6 +33,7 @@
   $context = stream_context_create($options);
   $result = file_get_contents($url, false, $context);
   
+
   if ($result === false) {
     // Обработка ошибки
     echo "Ошибка при отправке заявки в Телеграм.";
@@ -41,55 +42,44 @@
     echo "Заявка успешно отправлена в Телеграм.";
   }
 
+//========================
 
-// // Файлы phpmailer
-// require 'phpmailer/PHPMailer.php';
-// require 'phpmailer/SMTP.php';
-// require 'phpmailer/Exception.php';
+  // формируем URL, на который будем отправлять запрос в битрикс24
+	$queryURL = "https://{site_name}.bitrix24.ru/rest/1/{token}/crm.lead.add.json";	
 
-// // Формирование самого письма
-// $title = "GILDIA";
-// $body = "
-// <h2>Заявка с сайта</h2>
-// <b>Имя:</b> $name<br>
-// <b>Телефон:</b> $phone<br>
-// ";
-// // Настройки PHPMailer
-// $mail = new PHPMailer\PHPMailer\PHPMailer();
-// try {
-//     $mail->isSMTP();   
-//     $mail->CharSet = "UTF-8";
-//     $mail->SMTPAuth   = true;
-//     //$mail->SMTPDebug = 2;
-//     $mail->Debugoutput = function($str, $level) {$GLOBALS['status'][] = $str;};
+  //собираем данные из формы
+  $sPhone = htmlspecialchars($_POST["PHONE"]);
+  $sName = htmlspecialchars($_POST["NAME"]);
+  $sLastName = htmlspecialchars($_POST["LAST_NAME"]);
+  $arPhone = (!empty($sPhone)) ? array(array('VALUE' => $sPhone, 'VALUE_TYPE' => 'MOBILE')) : array();
+	
+	// формируем параметры для создания лида	
+	$queryData = http_build_query(array(
+		"fields" => array(
+      "SITE" => $site, // имя сайта
+			"NAME" => $name,	// имя
+			"PHONE" => $phone, // телефон
+		),
+		'params' => array("REGISTER_SONET_EVENT" => "Y")	// Y = произвести регистрацию события добавления лида в живой ленте. Дополнительно будет отправлено уведомление ответственному за лид.	
+	));
 
-//     $mail->Host       = 'smtp.mail.ru'; 
-//     $mail->Username   = 'web-prog-dn@mail.ru'; 
-//     // 
-//     $mail->Password   = '6W1EU4RUb7ptcmCvtHCQ';
-//     $mail->SMTPSecure = 'ssl';
-//     $mail->Port       = 465;
-//     $mail->setFrom('web-prog-dn@mail.ru', 'GILDIA'); 
-//     // Получатель письма
-//     $mail->addAddress('danikoktysyk@gmail.com');  
-
-// // Отправка сообщения
-// $mail->isHTML(true);
-// $mail->Subject = $title;
-// $mail->Body = $body;    
-
-// // Проверяем отравленность сообщения
-// if ($mail->send()) {$result = "success";} 
-// else {$result = "error";}
-
-// } catch (Exception $e) {
-//     $result = "error";
-//     $status = "Сообщение не было отправлено. Причина ошибки: {$mail->ErrorInfo}";
-// }
-
-// // Отображение результата
-// echo json_encode(["result" => $result, "resultfile" => $rfile, "status" => $status]);
-
-// if ($sendToTelegram) {$result = "success";} 
-// else {$result = "error";}
+	// отправляем запрос в Б24 и обрабатываем ответ
+	$curl = curl_init();
+	curl_setopt_array($curl, array(
+		CURLOPT_SSL_VERIFYPEER => 0,
+		CURLOPT_POST => 1,
+		CURLOPT_HEADER => 0,
+		CURLOPT_RETURNTRANSFER => 1,
+		CURLOPT_URL => $queryURL,
+		CURLOPT_POSTFIELDS => $queryData,
+	));
+	$result = curl_exec($curl);
+	curl_close($curl);
+	$result = json_decode($result,1); 
+ 
+	// если произошла какая-то ошибка - выведем её
+	if(array_key_exists('error', $result))
+	{      
+		die("Ошибка при сохранении лида: ".$result['error_description']);
+	}
 ?>
